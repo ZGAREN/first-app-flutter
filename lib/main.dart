@@ -1,3 +1,7 @@
+import 'package:first_app/ui/pages/counter.page.dart';
+import 'package:first_app/ui/pages/gallery.page.dart';
+import 'package:first_app/ui/pages/home.page.dart';
+import 'package:first_app/ui/pages/meteo.page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,110 +18,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
         primaryColor: Colors.deepOrangeAccent,
       ),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // une page qui contient element scafulld se compose AppBar et body
-    return Scaffold(
-      drawer: MyDrawer(),
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: Text('Home '),
-      ),
-      body: Center(
-        child: Text(
-          " *** Home Page *** ",
-          style: TextStyle(
-            color: Colors.deepOrangeAccent,
-            fontSize: 26,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class MyDrawer extends StatelessWidget {
-  const MyDrawer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-                gradient:
-                    LinearGradient(colors: [Colors.white, Colors.tealAccent])),
-            child: Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage("images/logo.png"),
-                radius: 40,
-              ),
-            ),
-          ),
-          ListTile(
-            title: Text(
-              'Home',
-              style: TextStyle(fontSize: 22),
-            ),
-            leading: Icon(
-              Icons.home,
-              color: Colors.green,
-            ),
-            trailing: Icon(
-              Icons.arrow_right,
-              color: Colors.green,
-            ),
-            onTap: () {},
-          ),
-          Divider(
-            height: 2,
-            color: Colors.green,
-          ),
-          ListTile(
-            title: Text(
-              'Meteo',
-              style: TextStyle(fontSize: 22),
-            ),
-            leading: Icon(
-              Icons.cloudy_snowing,
-              color: Colors.green,
-            ),
-            trailing: Icon(
-              Icons.arrow_right,
-              color: Colors.green,
-            ),
-            onTap: () {},
-          ),
-          Divider(
-            height: 2,
-            color: Colors.green,
-          ),
-          ListTile(
-            title: Text(
-              'Gallery',
-              style: TextStyle(fontSize: 22),
-            ),
-            leading: Icon(
-              Icons.browse_gallery,
-              color: Colors.green,
-            ),
-            trailing: Icon(
-              Icons.arrow_right,
-              color: Colors.green,
-            ),
-            onTap: () {},
-          )
-        ],
-      ),
+      routes: {
+        "/home": (context) => HomePage(),
+        "/meteo": (context) => MeteoPage(),
+        "/gallery": (context) => GalleryPage(),
+        "/counter": (context) => CounterPage()
+      },
+      initialRoute: '/home',
+      // façon d'ecrire comme ça ===> home: HomePage(),
     );
   }
 }
